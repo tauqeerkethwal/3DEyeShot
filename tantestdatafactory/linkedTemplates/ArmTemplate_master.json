@@ -27,6 +27,14 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe"
 		},
+		"dataFactory_properties_globalParameters_testglobal_value": {
+			"type": "string",
+			"defaultValue": "5"
+		},
+		"dataFactory_location": {
+			"type": "string",
+			"defaultValue": "westeurope"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -56,6 +64,12 @@
 					},
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
+					"dataFactory_properties_globalParameters_testglobal_value": {
+						"value": "[parameters('dataFactory_properties_globalParameters_testglobal_value')]"
+					},
+					"dataFactory_location": {
+						"value": "[parameters('dataFactory_location')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"

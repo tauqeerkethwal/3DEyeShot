@@ -19,6 +19,12 @@
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe"
+		},
+		"dataFactory_properties_globalParameters_testglobal_value": {
+			"value": "5"
+		},
+		"dataFactory_location": {
+			"value": "westeurope"
 		}
 	}
 }

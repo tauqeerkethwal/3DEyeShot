@@ -26,6 +26,14 @@
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe"
+		},
+		"dataFactory_properties_globalParameters_testglobal_value": {
+			"type": "string",
+			"defaultValue": "5"
+		},
+		"dataFactory_location": {
+			"type": "string",
+			"defaultValue": "westeurope"
 		}
 	},
 	"variables": {
@@ -68,7 +76,9 @@
 				"annotations": [],
 				"lastPublishTime": "2020-08-31T18:56:47Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/testzipdatasource')]",
@@ -99,6 +109,7 @@
 				]
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		},
@@ -117,7 +128,9 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/trigger1')]",
@@ -150,8 +163,24 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/pipelines/pipeline1')]"
 			]
+		},
+		{
+			"name": "[parameters('factoryName')]",
+			"type": "Microsoft.DataFactory/factories",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"globalParameters": {
+					"testglobal": {
+						"type": "string",
+						"value": "[parameters('dataFactory_properties_globalParameters_testglobal_value')]"
+					}
+				}
+			},
+			"dependsOn": [],
+			"location": "[parameters('dataFactory_location')]"
 		}
 	]
 }
