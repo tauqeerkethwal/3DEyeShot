@@ -1,0 +1,29 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"folder": "@triggerBody().folderPath",
+					"filename": "@triggerBody().fileName"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/bronze/blobs/insighthealth/npi/at",
+			"blobPathEndsWith": ".zip",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
