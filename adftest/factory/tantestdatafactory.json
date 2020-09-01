@@ -1,0 +1,12 @@
+{
+	"name": "tantestdatafactory",
+	"properties": {
+		"globalParameters": {
+			"testglobal": {
+				"type": "string",
+				"value": "5"
+			}
+		}
+	},
+	"location": "westeurope"
+}
