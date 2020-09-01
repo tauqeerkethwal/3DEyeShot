@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "tantestdatafactory"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://amazdatahubsadevwe.dfs.core.windows.net"
+		},
+		"trigger1_properties_pipeline1_parameters_folder": {
+			"value": "@triggerBody().folderPath"
+		},
+		"trigger1_properties_pipeline1_parameters_filename": {
+			"value": "@triggerBody().fileName"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
