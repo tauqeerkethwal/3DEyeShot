@@ -1,0 +1,21 @@
+{
+	"name": "DynamicsAX1",
+	"properties": {
+		"annotations": [],
+		"type": "DynamicsAX",
+		"typeProperties": {
+			"url": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com/data",
+			"tenant": "7cd654bb-7569-45b4-b7dc-cd9f1d80ba21",
+			"aadResourceId": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com",
+			"servicePrincipalId": "b306c362-8bf2-45c4-b05a-2c26a4cfb786",
+			"servicePrincipalKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "amaz-datahub-erp-odata-secret"
+			}
+		}
+	}
+}
