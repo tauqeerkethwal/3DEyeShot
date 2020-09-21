@@ -150,10 +150,12 @@
 		],
 		"parameters": {
 			"folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "e"
 			},
 			"filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "fsdf"
 			}
 		},
 		"variables": {
