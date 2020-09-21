@@ -137,7 +137,17 @@
 				"inputs": [
 					{
 						"referenceName": "testzipdatasource",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": {
+								"value": "@variables('folder')",
+								"type": "Expression"
+							},
+							"filename": {
+								"value": "@pipeline().parameters.filename",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
