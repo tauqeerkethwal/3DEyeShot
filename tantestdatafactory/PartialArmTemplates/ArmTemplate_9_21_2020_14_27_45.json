@@ -6,58 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "tantestdatafactory"
-		},
-		"AzureDataLakeStorage1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
-		},
-		"silver_linked_service_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'silver_linked_service'"
-		},
-		"AzureDataLakeStorage1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://amazdatahubsadevwe.dfs.core.windows.net"
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://amaz-datahub-kv-dev-we.vault.azure.net"
-		},
-		"DynamicsAX1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com/data"
-		},
-		"DynamicsAX1_properties_typeProperties_tenant": {
-			"type": "string",
-			"defaultValue": "7cd654bb-7569-45b4-b7dc-cd9f1d80ba21"
-		},
-		"DynamicsAX1_properties_typeProperties_aadResourceId": {
-			"type": "string",
-			"defaultValue": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com"
-		},
-		"DynamicsAX1_properties_typeProperties_servicePrincipalId": {
-			"type": "string",
-			"defaultValue": "b306c362-8bf2-45c4-b05a-2c26a4cfb786"
-		},
-		"trigger1_properties_pipeline1_parameters_folder": {
-			"type": "string",
-			"defaultValue": "@triggerBody().folderPath"
-		},
-		"trigger1_properties_pipeline1_parameters_filename": {
-			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
-		},
-		"trigger1_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe"
-		},
-		"dataFactory_properties_globalParameters_testglobal_value": {
-			"type": "string",
-			"defaultValue": "5"
-		},
-		"dataFactory_location": {
-			"type": "string",
-			"defaultValue": "westeurope"
 		}
 	},
 	"variables": {
@@ -221,8 +169,7 @@
 						"outputs": [
 							{
 								"referenceName": "testtablesql",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -350,26 +297,6 @@
 				]
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": [
 				"[variables('factoryId')]"
 			]
 		},
@@ -381,7 +308,7 @@
 				"annotations": [],
 				"type": "AzureKeyVault",
 				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					"baseUrl": "https://amaz-datahub-kv-dev-we.vault.azure.net"
 				}
 			},
 			"dependsOn": [
@@ -396,10 +323,10 @@
 				"annotations": [],
 				"type": "DynamicsAX",
 				"typeProperties": {
-					"url": "[parameters('DynamicsAX1_properties_typeProperties_url')]",
-					"tenant": "[parameters('DynamicsAX1_properties_typeProperties_tenant')]",
-					"aadResourceId": "[parameters('DynamicsAX1_properties_typeProperties_aadResourceId')]",
-					"servicePrincipalId": "[parameters('DynamicsAX1_properties_typeProperties_servicePrincipalId')]",
+					"url": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com/data",
+					"tenant": "7cd654bb-7569-45b4-b7dc-cd9f1d80ba21",
+					"aadResourceId": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com",
+					"servicePrincipalId": "b306c362-8bf2-45c4-b05a-2c26a4cfb786",
 					"servicePrincipalKey": {
 						"type": "AzureKeyVaultSecret",
 						"store": {
@@ -429,8 +356,8 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"folder": "[parameters('trigger1_properties_pipeline1_parameters_folder')]",
-							"filename": "[parameters('trigger1_properties_pipeline1_parameters_filename')]"
+							"folder": "@triggerBody().folderPath",
+							"filename": "@triggerBody().fileName"
 						}
 					}
 				],
@@ -439,7 +366,7 @@
 					"blobPathBeginsWith": "/bronze/blobs/erp/inventitembatch",
 					"blobPathEndsWith": ".csv",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"scope": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
@@ -448,21 +375,6 @@
 			"dependsOn": [
 				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/pipelines/pipeline1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/silver_linked_service')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('silver_linked_service_connectionString')]"
-				}
-			},
-			"dependsOn": [
-				"[variables('factoryId')]"
 			]
 		},
 		{
@@ -510,24 +422,8 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/linkedServices/silver_linked_service')]"
+				"[variables('factoryId')]"
 			]
-		},
-		{
-			"name": "[parameters('factoryName')]",
-			"type": "Microsoft.DataFactory/factories",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"globalParameters": {
-					"testglobal": {
-						"type": "string",
-						"value": "[parameters('dataFactory_properties_globalParameters_testglobal_value')]"
-					}
-				}
-			},
-			"dependsOn": [],
-			"location": "[parameters('dataFactory_location')]"
 		}
 	]
 }

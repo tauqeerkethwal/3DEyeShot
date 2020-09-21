@@ -8,8 +8,26 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"silver_linked_service_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://amazdatahubsadevwe.dfs.core.windows.net"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://amaz-datahub-kv-dev-we.vault.azure.net"
+		},
+		"DynamicsAX1_properties_typeProperties_url": {
+			"value": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com/data"
+		},
+		"DynamicsAX1_properties_typeProperties_tenant": {
+			"value": "7cd654bb-7569-45b4-b7dc-cd9f1d80ba21"
+		},
+		"DynamicsAX1_properties_typeProperties_aadResourceId": {
+			"value": "https://amazerptest10v1030e64ee8f9243b62devaos.cloudax.dynamics.com"
+		},
+		"DynamicsAX1_properties_typeProperties_servicePrincipalId": {
+			"value": "b306c362-8bf2-45c4-b05a-2c26a4cfb786"
 		},
 		"trigger1_properties_pipeline1_parameters_folder": {
 			"value": "@triggerBody().folderPath"
