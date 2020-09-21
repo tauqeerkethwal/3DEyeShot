@@ -1,0 +1,43 @@
+{
+	"name": "testtablesql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "silver_linked_service",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DataAreaId",
+				"type": "varchar"
+			},
+			{
+				"name": "ItemNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "BatchNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "BatchExpirationDate",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "VendorBatchNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "VendorExpirationDate",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "erp_inventitembatch"
+		}
+	}
+}

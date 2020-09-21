@@ -5,21 +5,91 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"folder": {
+				"type": "string"
+			},
+			"filename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "NPI-AT_202006_RAW_20200709090838.zip",
-				"folderPath": "insighthealth/npi/at/2020/07/28",
+				"fileName": "invent_item_batch_samplefile.csv",
+				"folderPath": "erp/inventitembatch",
 				"fileSystem": "bronze"
 			},
 			"columnDelimiter": ";",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
+				"name": "dataAreaId",
+				"type": "String"
+			},
+			{
+				"name": "ItemNumber",
+				"type": "String"
+			},
+			{
+				"name": "BatchNumber",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryVendorOriginCountryRegionId",
+				"type": "String"
+			},
+			{
+				"name": "BestBeforeDate",
+				"type": "String"
+			},
+			{
+				"name": "BatchDispositionCode",
+				"type": "String"
+			},
+			{
+				"name": "VendorBatchNumber",
+				"type": "String"
+			},
+			{
+				"name": "VendorBatchDate",
+				"type": "String"
+			},
+			{
+				"name": "BatchDescription",
+				"type": "String"
+			},
+			{
+				"name": "ManufacturingDate",
+				"type": "String"
+			},
+			{
+				"name": "VendorExpirationDate",
+				"type": "String"
+			},
+			{
+				"name": "BatchExpirationDate",
+				"type": "String"
+			},
+			{
+				"name": "ShelfLifeAdviceDate",
+				"type": "String"
+			},
+			{
+				"name": "SecondaryVendorOriginCountryRegionId",
+				"type": "String"
+			},
+			{
+				"name": "MostRecentTestDate",
+				"type": "String"
+			},
+			{
+				"name": "InventBatchRNumber_PIN",
 				"type": "String"
 			}
 		]

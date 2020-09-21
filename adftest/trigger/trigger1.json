@@ -17,8 +17,8 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/bronze/blobs/insighthealth/npi/at",
-			"blobPathEndsWith": ".zip",
+			"blobPathBeginsWith": "/bronze/blobs/erp/inventitembatch",
+			"blobPathEndsWith": ".csv",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/45bba087-f854-47cd-8526-0f962d0b34eb/resourceGroups/amaz-datahub-dev-we/providers/Microsoft.Storage/storageAccounts/amazdatahubsadevwe",
 			"events": [

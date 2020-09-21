@@ -9,8 +9,143 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "folder",
-					"value": "j"
+					"value": {
+						"value": "@replace(pipeline().parameters.folder,'bronze/','')",
+						"type": "Expression"
+					}
 				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "TRUNCATE TABLE [dbo].[erp_inventitembatch]",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "dataAreaId",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DataAreaId",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ItemNumber",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ItemNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BatchNumber",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BatchNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "BatchExpirationDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "BatchExpirationDate",
+									"type": "DateTimeOffset",
+									"physicalType": "datetimeoffset"
+								}
+							},
+							{
+								"source": {
+									"name": "VendorBatchNumber",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "VendorBatchNumber",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "VendorExpirationDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "VendorExpirationDate",
+									"type": "DateTimeOffset",
+									"physicalType": "datetimeoffset"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "testzipdatasource",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "testtablesql",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"parameters": {
@@ -23,9 +158,6 @@
 		},
 		"variables": {
 			"folder": {
-				"type": "String"
-			},
-			"fileName": {
 				"type": "String"
 			}
 		},
